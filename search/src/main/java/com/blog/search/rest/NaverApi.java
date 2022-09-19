@@ -2,9 +2,7 @@ package com.blog.search.rest;
 
 import java.net.URI;
 import java.util.Arrays;
-import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpEntity;
@@ -70,17 +68,17 @@ public class NaverApi extends RestApiAbstract {
 	}
 	
 	protected URI getURI(SearchBlogReq req) throws Exception {
-		final Map<String, String> requestMap = BeanUtils.describe(req);
+		final long start = (req.getPage() * req.getSize()) - req.getSize() + 1;
 		
 		return UriComponentsBuilder.newInstance()
 				.scheme("https")
 				.host(this.host)
 				.path(SEARCH_LIST_URL)
-				.queryParam("query", "test")
-				.queryParam("sort", "{sort}")
-				.queryParam("start", "{page}")
-				.queryParam("display", "{size}")
-				.buildAndExpand(requestMap)
+				.queryParam("query", req.getQuery())
+				.queryParam("sort", req.getSort())
+				.queryParam("start", start)
+				.queryParam("display", req.getSize())
+				.build()
 				.toUri();
 	}
 }
