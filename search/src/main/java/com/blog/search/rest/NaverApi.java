@@ -3,29 +3,23 @@ package com.blog.search.rest;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.blog.search.utils.PageUtils;
 import com.blog.search.exception.ApplicationException;
-import com.blog.search.resources.SearchBlogResource;
-import com.blog.search.rest.request.SearchBlogReq;
-import com.blog.search.rest.response.NaverSearchBlogRes;
+import com.blog.search.request.SearchBlogReq;
+import com.blog.search.rest.response.NaverSearchResponse;
+import com.blog.search.utils.PageUtils;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -49,44 +43,20 @@ public class NaverApi extends RestApiAbstract {
 	private final static String SEARCH_ERROR_MESSAGE = "네이버 블로그 검색중에 에러가 발생하였습니다.";
 	
 	public <T> PageUtils<T> getSearchBlog(SearchBlogReq req) {
-		if (!StringUtils.hasText(req.getSort())) {
-			req.setSort("sim");
-		}
+		req.setSort(SearchBlogReq.NaverSort.getSort(req.getSort()));
 		
 		final HttpEntity<String> entity = new HttpEntity<String>(this.getHeader());
 		
         try {
-        	final ResponseEntity<NaverSearchBlogRes> response =
-        			naverRestTemplate.exchange(this.getURI(req), HttpMethod.GET, entity, NaverSearchBlogRes.class);
+        	final ResponseEntity<NaverSearchResponse> response =
+        			naverRestTemplate.exchange(this.getURI(req), HttpMethod.GET, entity, NaverSearchResponse.class);
         	
-        	final NaverSearchBlogRes body = response.getBody();
-        	return this.convertToResource(req, body);
+        	final NaverSearchResponse body = response.getBody();
+        	return new PageUtils<>(body.getList(), body.getTotalCount(), req);
         } catch (Exception e) {
         	log.error(e.getMessage(), e);
         	throw new ApplicationException("4001", SEARCH_ERROR_MESSAGE);
         }
-	}
-	
-	private <T> PageUtils<T> convertToResource(SearchBlogReq req, NaverSearchBlogRes body) {
-//		return new PageImpl<>(
-//					body.getItems()
-//					.stream()
-//					.map(doc ->
-//							SearchBlogResource.builder()
-//								.name(doc.getBloggername())
-//								.title(doc.getTitle())
-//								.contents(doc.getDescription())
-//								.url(doc.getLink())
-//								.thumbnail("")
-//								.date(doc.getPostdate())
-//								.build()
-//					)
-//					.collect(Collectors.toList())
-//				, PageRequest.of(req.getPage(), (int) req.getSize())
-//				, body.getTotal()
-//			);
-		
-		return null;
 	}
 	
 	protected HttpHeaders getHeader() {

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blog.core.jpa.entity.SearchHistory;
-import com.blog.search.utils.PageUtils;
 import com.blog.search.exception.ApplicationException;
+import com.blog.search.request.SearchBlogReq;
 import com.blog.search.resources.SearchBlogResource;
 import com.blog.search.resources.SearchKeywordHistoryResource;
-import com.blog.search.rest.request.SearchBlogReq;
 import com.blog.search.service.SearchService;
+import com.blog.search.utils.PageUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -43,7 +42,7 @@ public class SearchController {
 	@ApiOperation("블로그 목록")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "query", value = "검색어", dataType = "string", required = false, paramType = "query"),
-		@ApiImplicitParam(name = "sort", value = "정렬 키 [accuracy:정확도 | recency:최신]", dataType = "string", required = false, paramType = "query"),
+		@ApiImplicitParam(name = "sort", value = "정렬 키", allowableValues="accuracy,recency", defaultValue = "accuracy", allowMultiple = false, required = false, paramType = "query"),
 		@ApiImplicitParam(name = "page", value = "Page No", dataType = "int", defaultValue = "1", required = false, paramType = "query"),
 		@ApiImplicitParam(name = "size", value = "Per Page", dataType = "int", defaultValue = "10", required = false, paramType = "query")
 	})
@@ -59,7 +58,7 @@ public class SearchController {
 	@ApiOperation("KAKAO 블로그 목록")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "query", value = "검색어", dataType = "string", required = false, paramType = "query"),
-		@ApiImplicitParam(name = "sort", value = "정렬 키 [sim:정확도 | date:최신]", dataType = "string", required = false, paramType = "query"),
+		@ApiImplicitParam(name = "sort", value = "정렬 키", allowableValues="accuracy,recency", defaultValue = "accuracy", allowMultiple = false, required = false, paramType = "query"),
 		@ApiImplicitParam(name = "page", value = "Page No", dataType = "int", defaultValue = "1", required = false, paramType = "query"),
 		@ApiImplicitParam(name = "size", value = "Per Page", dataType = "int", defaultValue = "10", required = false, paramType = "query")
 	})
@@ -75,7 +74,7 @@ public class SearchController {
 	@ApiOperation("NAVER 블로그 목록")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "query", value = "검색어", dataType = "string", required = false, paramType = "query"),
-		@ApiImplicitParam(name = "sort", value = "정렬 키", dataType = "string", required = false, paramType = "query"),
+		@ApiImplicitParam(name = "sort", value = "정렬 키", allowableValues="sim,date", defaultValue = "sim", allowMultiple = false, required = false, paramType = "query"),
 		@ApiImplicitParam(name = "page", value = "Page No", dataType = "int", defaultValue = "1", required = false, paramType = "query"),
 		@ApiImplicitParam(name = "size", value = "Per Page", dataType = "int", defaultValue = "10", required = false, paramType = "query")
 	})

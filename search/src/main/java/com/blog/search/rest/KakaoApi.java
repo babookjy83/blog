@@ -2,9 +2,7 @@ package com.blog.search.rest;
 
 import java.net.URI;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +16,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.blog.search.utils.PageUtils;
 import com.blog.search.exception.ApplicationException;
-import com.blog.search.resources.SearchBlogResource;
-import com.blog.search.rest.request.SearchBlogReq;
-import com.blog.search.rest.response.KakaoSearchBlogRes;
+import com.blog.search.request.SearchBlogReq;
+import com.blog.search.rest.response.KakaoSearchResponse;
+import com.blog.search.utils.PageUtils;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -46,36 +43,17 @@ public class KakaoApi extends RestApiAbstract {
 		final HttpEntity<String> entity = new HttpEntity<String>(this.getHeader());
 		
         try {
-        	final ResponseEntity<KakaoSearchBlogRes> response =
-            		kakaoRestTemplate.exchange(this.getURI(req), HttpMethod.GET, entity, KakaoSearchBlogRes.class);
+        	final ResponseEntity<KakaoSearchResponse> response =
+            		kakaoRestTemplate.exchange(this.getURI(req), HttpMethod.GET, entity, KakaoSearchResponse.class);
         	
-        	final KakaoSearchBlogRes body = response.getBody();
-        	return this.convertToResource(req, body);
+        	final KakaoSearchResponse body = response.getBody();
+        	
+        	return new PageUtils<>(body.getList(), body.getMeta().getTotalCount(), req);
         } catch (Exception e) {
         	log.error(e.getMessage(), e);
 			throw new ApplicationException("4001", SEARCH_ERROR_MESSAGE);
         }
         
-	}
-	
-	@SuppressWarnings("unchecked")
-	private <T> PageUtils<T> convertToResource(SearchBlogReq req, KakaoSearchBlogRes body) {
-		final List<T> list = body.getDocuments()
-				.stream()
-				.map(doc ->
-						(T) SearchBlogResource.builder()
-							.name(doc.getBlogname())
-							.title(doc.getTitle())
-							.contents(doc.getContents())
-							.url(doc.getUrl())
-							.thumbnail(doc.getThumbnail())
-							.date(doc.getDatetime())
-							.build()
-				)
-				.collect(Collectors.toList());
-		PageUtils aa = new PageUtils();
-		aa.setList(list);
-		return aa;
 	}
 	
 	protected HttpHeaders getHeader() {

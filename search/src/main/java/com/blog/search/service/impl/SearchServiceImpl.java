@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import com.blog.core.jpa.entity.SearchHistory;
 import com.blog.core.jpa.repository.SearchHistoryRepository;
 import com.blog.search.exception.ApplicationException;
+import com.blog.search.request.SearchBlogReq;
 import com.blog.search.resources.SearchKeywordHistoryResource;
 import com.blog.search.rest.KakaoApi;
 import com.blog.search.rest.NaverApi;
-import com.blog.search.rest.request.SearchBlogReq;
 import com.blog.search.service.SearchService;
 import com.blog.search.utils.PageUtils;
 
