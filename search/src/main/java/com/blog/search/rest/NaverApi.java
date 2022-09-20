@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.blog.search.exception.ApplicationException;
 import com.blog.search.request.SearchBlogReq;
 import com.blog.search.rest.response.NaverSearchResponse;
+import com.blog.search.rest.response.SearchResponse;
 import com.blog.search.utils.PageUtils;
 
 import lombok.Setter;
@@ -40,7 +41,7 @@ public class NaverApi extends RestApiAbstract {
 	private final static String SEARCH_LIST_URL = "/v1/search/blog.json";
 	private final static String SEARCH_ERROR_MESSAGE = "네이버 블로그 검색중에 에러가 발생하였습니다.";
 	
-	public <T> PageUtils<T> getSearchBlog(SearchBlogReq req) {
+	public PageUtils<SearchResponse> getSearchBlog(SearchBlogReq req) {
 		req.setSort(SearchBlogReq.NaverSort.getSort(req.getSort()));
 		
 		final HttpEntity<String> entity = new HttpEntity<String>(this.getHeader());

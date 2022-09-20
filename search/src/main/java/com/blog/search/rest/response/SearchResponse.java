@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import org.springframework.beans.BeanUtils;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class SearchResponse<T> implements Serializable {
+@AllArgsConstructor
+public class SearchResponse implements Serializable {
 	
 	/**
 	 * serialVersionUID
@@ -27,7 +29,7 @@ public class SearchResponse<T> implements Serializable {
 	private String thumbnail;
 	private LocalDate date;
 	
-	public SearchResponse(T response) {
+	public <T> SearchResponse(T response) {
 		BeanUtils.copyProperties(response, this);
 	}
 }

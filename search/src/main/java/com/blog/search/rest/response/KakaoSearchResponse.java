@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
@@ -22,7 +24,7 @@ public class KakaoSearchResponse implements Serializable {
 	private static final long serialVersionUID = -999387053022302232L;
 
 	private Meta meta = new Meta();
-	private List<Documents> documents = new LinkedList<>();
+	private List<Document> documents = new LinkedList<>();
 	
 	@Setter
 	@Getter
@@ -33,7 +35,9 @@ public class KakaoSearchResponse implements Serializable {
 	
 	@Setter
 	@Getter
-	public static class Documents {
+	@NoArgsConstructor
+	@AllArgsConstructor
+	public static class Document {
 		@JsonProperty("blogname")
 		private String name;
 		private String title;
@@ -46,8 +50,7 @@ public class KakaoSearchResponse implements Serializable {
 		private LocalDate date;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public <T> List<T> getList() {
-		return (List<T>) documents.stream().map(SearchResponse::new).collect(Collectors.toList());
+	public List<SearchResponse> getList() {
+		return (List<SearchResponse>) documents.stream().map(SearchResponse::new).collect(Collectors.toList());
 	}
 }

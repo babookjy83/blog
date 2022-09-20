@@ -10,12 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.blog.core.jpa.entity.SearchHistory;
 import com.blog.search.exception.ApplicationException;
 import com.blog.search.request.SearchBlogReq;
 import com.blog.search.resources.SearchBlogResource;
 import com.blog.search.resources.SearchKeywordHistoryResource;
+import com.blog.search.rest.response.SearchResponse;
 import com.blog.search.service.SearchService;
 import com.blog.search.utils.PageUtils;
 
@@ -32,6 +34,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @Setter
 @Getter
 @Api(tags = "블로그 목록조회 API")
+@EnableWebMvc
 @RestController
 @RequestMapping("/search")
 public class SearchController {
@@ -50,8 +53,8 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchBlogResource.class)
 	})
 	@GetMapping("/blogs")
-	public <T> HttpEntity<PageUtils<T>> getBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
-		final PageUtils<T> result = searchService.getSearchBlog(req);
+	public HttpEntity<PageUtils<SearchResponse>> getBlogs(@ApiIgnore  SearchBlogReq req) throws ApplicationException {
+		final PageUtils<SearchResponse> result = searchService.getSearchBlog(req);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -66,8 +69,8 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchBlogResource.class)
 	})
 	@GetMapping("/kakao/blogs")
-	public <T> HttpEntity<PageUtils<T>> getKakaoBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
-		final PageUtils<T> result = searchService.getKakaoBlogs(req);
+	public HttpEntity<PageUtils<SearchResponse>> getKakaoBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
+		final PageUtils<SearchResponse> result = searchService.getKakaoBlogs(req);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -82,8 +85,8 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchBlogResource.class)
 	})
 	@GetMapping("/naver/blogs")
-	public <T> HttpEntity<PageUtils<T>> getNaverBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
-		final PageUtils<T> result = searchService.getNaverBlogs(req);
+	public HttpEntity<PageUtils<SearchResponse>> getNaverBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
+		final PageUtils<SearchResponse> result = searchService.getNaverBlogs(req);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -92,8 +95,8 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchHistory.class)
 	})
 	@GetMapping("/history")
-	public HttpEntity<List<SearchKeywordHistoryResource>> getHistory() {
-		final List<SearchKeywordHistoryResource> histories = searchService.getHistories();
+	public HttpEntity<List<SearchKeywordHistoryResource>> getKeywordHistoies() {
+		final List<SearchKeywordHistoryResource> histories = searchService.getKeywordHistories();
 		return ResponseEntity.ok(histories);
 	}
 }

@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
@@ -28,6 +30,8 @@ public class NaverSearchResponse implements Serializable {
 	
 	@Setter
 	@Getter
+	@NoArgsConstructor
+	@AllArgsConstructor
 	public static class Item {
 		@JsonProperty("bloggername")
 		private String name;
@@ -42,8 +46,7 @@ public class NaverSearchResponse implements Serializable {
 		private LocalDate date;
 	}
 
-	@SuppressWarnings("unchecked")
-	public <T> List<T> getList() {
-		return (List<T>) items.stream().map(SearchResponse::new).collect(Collectors.toList());
+	public List<SearchResponse> getList() {
+		return (List<SearchResponse>) items.stream().map(SearchResponse::new).collect(Collectors.toList());
 	}
 }
