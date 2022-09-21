@@ -43,4 +43,9 @@ public class SearchHistory implements Serializable {
 		this.keyword = keyword;
 	}
 	
+	public SearchHistory(String keyword, int searchCount) {
+		this(keyword);
+		this.searchCount = searchCount;
+	}
+	
 }

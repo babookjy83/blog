@@ -28,7 +28,7 @@ public class BlogSearchListener {
 	@Async
 	@EventListener
 	public void saveKeywordHistory(SearchBlogReq req) {
-		// 많은 트래픽과 데이터 정합성을 위해 성능이 떨어져도 Lock을...
+		// lock을 쓸지 말지 고민고민...
 		try {
 			lock.lock();
 			

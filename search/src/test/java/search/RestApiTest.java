@@ -5,25 +5,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 
-import com.blog.search.config.RestTemplateConfig;
+import com.blog.search.Application;
 import com.blog.search.request.SearchBlogReq;
 import com.blog.search.request.SearchBlogReq.KakaoSort;
 import com.blog.search.request.SearchBlogReq.NaverSort;
 import com.blog.search.rest.KakaoApi;
 import com.blog.search.rest.NaverApi;
 import com.blog.search.rest.response.SearchResponse;
-import com.blog.search.service.impl.SearchServiceImpl;
 import com.blog.search.utils.PageUtils;
 
-@SpringBootTest(classes = {SearchServiceImpl.class})
-@EnableConfigurationProperties(value = {KakaoApi.class, NaverApi.class})
-@ContextConfiguration(classes = {RestTemplateConfig.class})
-@TestPropertySource("classpath:application.properties")
+@SpringBootTest(classes = Application.class)
 public class RestApiTest {
 
 	@Autowired
@@ -33,7 +26,7 @@ public class RestApiTest {
 	
 	@Test
     @DisplayName("카카오 블로그 목록 조회 테스트")
-    void kakaoApiTest() throws Exception {
+    void testKakaoApi() throws Exception {
 		// given
 		final SearchBlogReq req = new SearchBlogReq("테스트", KakaoSort.ACCURACY.name().toLowerCase(), 1, 1);
 		
@@ -46,7 +39,7 @@ public class RestApiTest {
 	
 	@Test
     @DisplayName("네이버 블로그 목록 조회 테스트")
-    void kaverApiTest() throws Exception {
+    void testKaverApi() throws Exception {
 		// given
 		final SearchBlogReq req = new SearchBlogReq("테스트", NaverSort.SIM.name().toLowerCase(), 1, 1);
 		

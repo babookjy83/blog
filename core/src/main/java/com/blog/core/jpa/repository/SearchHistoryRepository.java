@@ -19,7 +19,6 @@ public interface SearchHistoryRepository extends JpaRepository<SearchHistory, Lo
     )
     List<SearchHistory> findTop10Keywords();
 	
-	// 데이터 정합성을 강조하셨으니 비관적Lock의 Write로..
 	@Transactional
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	SearchHistory findByKeyword(String keyword);
