@@ -11,7 +11,7 @@
 ### 1) 블로그 목록조회 API
 
 * 설명
-	* Kakao API 에러 시 Naver API를 조회하고 키워드를 저장한다.
+	* Kakao API 에러 시 Naver API를 조회하고 키워드를 저장합니다.
 	* 카카오 및 네이버 블로그 조회 API도 각각 추가로 만들었습니다.
 	* 블로그 조회 API는 총 3가지이지만 스펙은 모두 같습니다.
 
@@ -44,7 +44,7 @@ curl -X GET "http://localhost:8080/search/naver/blogs?query=fszf&sort=sim&page=1
 ### 2) 인기 검색어 목록조회 API 
 
 * 설명
-	* 블로그 검색 키워드를 누적 많은 순서로 10개를 정렬하여 제공한다.
+	* 블로그 검색 키워드를 누적 많은 순서로 10개를 정렬하여 제공합니다.
 
 * Request
 	* 없음
