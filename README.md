@@ -1,4 +1,14 @@
-# 1. 오픈소스 사용
+# 1. 프로젝트 설명
+
+* 구성
+	* 멀티모듈로 구성하였으며, JPA Entity 및 Repository를 core에 별도로 분리하였습니다.
+	* 분리 이유는 DB는 공통이므로 core에서 공통으로 Entity를 관리하기 위해서입니다.
+* 실행
+	* java -jar search-1.0.0.jar
+
+------
+
+# 2. 오픈소스 사용
 
 * springfox : API 테스트 및 기능 검증을 위해 swagger-ui를 사용하였습니다.
 * swagger-ui URL : http://localhost:8080/swagger-ui.html
@@ -6,7 +16,7 @@
 ------
 
 
-# 2. API 명세서
+# 3. API 명세서
 
 ### 1) 블로그 목록조회 API
 
