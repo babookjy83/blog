@@ -53,7 +53,7 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchBlogResource.class)
 	})
 	@GetMapping("/blogs")
-	public HttpEntity<PageUtils<SearchResponse>> getBlogs(@ApiIgnore SearchBlogReq req) throws ApplicationException {
+	public HttpEntity<PageUtils<SearchResponse>> getBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
 		final PageUtils<SearchResponse> result = searchService.getSearchBlog(req);
 		return ResponseEntity.ok(result);
 	}
