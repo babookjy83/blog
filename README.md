@@ -1,44 +1,44 @@
-# 1. ÇÁ·ÎÁ§Æ® ¼³¸í
+# 1. í”„ë¡œì íŠ¸ ì„¤ëª…
 
-* ±¸¼º
-	* ¸ÖÆ¼¸ðµâ·Î ±¸¼ºÇÏ¿´À¸¸ç, JPA Entity ¹× Repository¸¦ core¿¡ º°µµ·Î ºÐ¸®ÇÏ¿´½À´Ï´Ù.
-	* ºÐ¸® ÀÌÀ¯´Â DB´Â °øÅëÀÌ¹Ç·Î core¿¡¼­ °øÅëÀ¸·Î Entity¸¦ °ü¸®ÇÏ±â À§ÇØ¼­ÀÔ´Ï´Ù.
-* ½ÇÇà
+* êµ¬ì„±
+	* ë©€í‹°ëª¨ë“ˆë¡œ êµ¬ì„±í•˜ì˜€ìœ¼ë©°, JPA Entity ë° Repositoryë¥¼ coreì— ë³„ë„ë¡œ ë¶„ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.
+	* ë¶„ë¦¬ ì´ìœ ëŠ” DBëŠ” ê³µí†µì´ë¯€ë¡œ coreì—ì„œ ê³µí†µìœ¼ë¡œ Entityë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•´ì„œìž…ë‹ˆë‹¤.
+* ì‹¤í–‰
 	* java -jar search-1.0.0.jar
 
 ------
 
-# 2. ¿ÀÇÂ¼Ò½º »ç¿ë
+# 2. ì˜¤í”ˆì†ŒìŠ¤ ì‚¬ìš©
 
-* springfox : API Å×½ºÆ® ¹× ±â´É °ËÁõÀ» À§ÇØ swagger-ui¸¦ »ç¿ëÇÏ¿´½À´Ï´Ù.
+* springfox : API í…ŒìŠ¤íŠ¸ ë° ê¸°ëŠ¥ ê²€ì¦ì„ ìœ„í•´ swagger-uië¥¼ ì‚¬ìš©í•˜ì˜€ìŠµë‹ˆë‹¤.
 * swagger-ui URL : http://localhost:8080/swagger-ui.html
     
 ------
 
 
-# 3. API ¸í¼¼¼­
+# 3. API ëª…ì„¸ì„œ
 
-### 1) ºí·Î±× ¸ñ·ÏÁ¶È¸ API
+### 1) ë¸”ë¡œê·¸ ëª©ë¡ì¡°íšŒ API
 
-* ¼³¸í
-	* Kakao API ¿¡·¯ ½Ã Naver API¸¦ Á¶È¸ÇÏ°í Å°¿öµå¸¦ ÀúÀåÇÕ´Ï´Ù.
-	* Ä«Ä«¿À ¹× ³×ÀÌ¹ö ºí·Î±× Á¶È¸ APIµµ °¢°¢ Ãß°¡·Î ¸¸µé¾ú½À´Ï´Ù.
-	* ºí·Î±× Á¶È¸ API´Â ÃÑ 3°¡ÁöÀÌÁö¸¸ ½ºÆåÀº ¸ðµÎ °°½À´Ï´Ù.
+* ì„¤ëª…
+	* Kakao API ì—ëŸ¬ ì‹œ Naver APIë¥¼ ì¡°íšŒí•˜ê³  í‚¤ì›Œë“œë¥¼ ì €ìž¥í•©ë‹ˆë‹¤.
+	* ì¹´ì¹´ì˜¤ ë° ë„¤ì´ë²„ ë¸”ë¡œê·¸ ì¡°íšŒ APIë„ ê°ê° ì¶”ê°€ë¡œ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤.
+	* ë¸”ë¡œê·¸ ì¡°íšŒ APIëŠ” ì´ 3ê°€ì§€ì´ì§€ë§Œ ìŠ¤íŽ™ì€ ëª¨ë‘ ê°™ìŠµë‹ˆë‹¤.
 
 * Request
-	* query : °Ë»ö¾î	
-	* sort : Á¤·Ä Å°	
+	* query : ê²€ìƒ‰ì–´	
+	* sort : ì •ë ¬ í‚¤	
 	* page : Page No	
 	* size : Per Page
 
 * Response
-    * name : ºí·Î°Å ¸í
-    * title : ºí·Î±× ¸í (Ä«Ä«¿À »ç¿ë)
-    * contents : ºí·Î±× ¼³¸í
-    * link : ºí·Î±× ¸µÅ©
-    * bloggerLink : ºí·Î±× ¸í (³×ÀÌ¹ö »ç¿ë)
-	* thumbnail : ºí·Î±× ½æ³×ÀÏ ÀÌ¹ÌÁö ¸µÅ©
-    * date : µî·ÏÀÏ
+    * name : ë¸”ë¡œê±° ëª…
+    * title : ë¸”ë¡œê·¸ ëª… (ì¹´ì¹´ì˜¤ ì‚¬ìš©)
+    * contents : ë¸”ë¡œê·¸ ì„¤ëª…
+    * link : ë¸”ë¡œê·¸ ë§í¬
+    * bloggerLink : ë¸”ë¡œê·¸ ëª… (ë„¤ì´ë²„ ì‚¬ìš©)
+	* thumbnail : ë¸”ë¡œê·¸ ì¸ë„¤ì¼ ì´ë¯¸ì§€ ë§í¬
+    * date : ë“±ë¡ì¼
 
 
 ```sh
@@ -51,22 +51,17 @@ curl -X GET "http://localhost:8080/search/naver/blogs?query=fszf&sort=sim&page=1
 	
 ------
 
-### 2) ÀÎ±â °Ë»ö¾î ¸ñ·ÏÁ¶È¸ API 
+### 2) ì¸ê¸° ê²€ìƒ‰ì–´ ëª©ë¡ì¡°íšŒ API 
 
-* ¼³¸í
-	* ºí·Î±× °Ë»ö Å°¿öµå¸¦ ´©Àû ¸¹Àº ¼ø¼­·Î 10°³¸¦ Á¤·ÄÇÏ¿© Á¦°øÇÕ´Ï´Ù.
+* ì„¤ëª…
+	* ë¸”ë¡œê·¸ ê²€ìƒ‰ í‚¤ì›Œë“œë¥¼ ëˆ„ì  ë§Žì€ ìˆœì„œë¡œ 10ê°œë¥¼ ì •ë ¬í•˜ì—¬ ì œê³µí•©ë‹ˆë‹¤.
 
 * Request
-	* ¾øÀ½
+	* ì—†ìŒ
 
 * Response
-    * keyword : °Ë»ö¾î
-    * search_count : ´©Àû °Ë»ö ¼ö
-    * contents : ºí·Î±× ¼³¸í
-    * link : ºí·Î±× ¸µÅ©
-    * bloggerLink : ºí·Î±× ¸í (³×ÀÌ¹ö »ç¿ë)
-	* thumbnail : ºí·Î±× ½æ³×ÀÏ ÀÌ¹ÌÁö ¸µÅ©
-    * date : µî·ÏÀÏ
+    * keyword : ê²€ìƒ‰ì–´
+    * search_count : ëˆ„ì  ê²€ìƒ‰ ìˆ˜
 
 
 ```sh
