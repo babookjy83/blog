@@ -58,8 +58,8 @@ public class JpaTest {
 	    }
 	    latch.await();
 	    
-	    // Lock 풀리는데 시간이 0.01초 정도 걸림... 0.1초 sleep
-	    Thread.sleep(100l);
+	    // Lock 풀리는데 시간이 0.1초 정도 걸림... 1초 sleep
+	    Thread.sleep(1000l);
 	    
 	    //then
 	    final Map<String, SearchHistory> historyMap = searchHistoryRepository.findAll()

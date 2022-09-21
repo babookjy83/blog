@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.blog.search.resources.SearchBlogResource;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -46,7 +47,7 @@ public class NaverSearchResponse implements Serializable {
 		private LocalDate date;
 	}
 
-	public List<SearchResponse> getList() {
-		return (List<SearchResponse>) items.stream().map(SearchResponse::new).collect(Collectors.toList());
+	public List<SearchBlogResource> getList() {
+		return (List<SearchBlogResource>) items.stream().map(SearchBlogResource::new).collect(Collectors.toList());
 	}
 }

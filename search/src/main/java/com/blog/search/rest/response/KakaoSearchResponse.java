@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.blog.search.resources.SearchBlogResource;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -50,7 +51,7 @@ public class KakaoSearchResponse implements Serializable {
 		private LocalDate date;
 	}
 	
-	public List<SearchResponse> getList() {
-		return (List<SearchResponse>) documents.stream().map(SearchResponse::new).collect(Collectors.toList());
+	public List<SearchBlogResource> getList() {
+		return (List<SearchBlogResource>) documents.stream().map(SearchBlogResource::new).collect(Collectors.toList());
 	}
 }

@@ -11,9 +11,9 @@ import com.blog.search.Application;
 import com.blog.search.request.SearchBlogReq;
 import com.blog.search.request.SearchBlogReq.KakaoSort;
 import com.blog.search.request.SearchBlogReq.NaverSort;
+import com.blog.search.resources.SearchBlogResource;
 import com.blog.search.rest.KakaoApi;
 import com.blog.search.rest.NaverApi;
-import com.blog.search.rest.response.SearchResponse;
 import com.blog.search.utils.PageUtils;
 
 @SpringBootTest(classes = Application.class)
@@ -31,7 +31,7 @@ public class RestApiTest {
 		final SearchBlogReq req = new SearchBlogReq("테스트", KakaoSort.ACCURACY.name().toLowerCase(), 1, 1);
 		
 		// when
-		final PageUtils<SearchResponse> response = kakaoApi.getSearchBlog(req);
+		final PageUtils<SearchBlogResource> response = kakaoApi.getSearchBlog(req);
 		
 		// then
 		this.assertThatOf(response);
@@ -44,7 +44,7 @@ public class RestApiTest {
 		final SearchBlogReq req = new SearchBlogReq("테스트", NaverSort.SIM.name().toLowerCase(), 1, 1);
 		
 		// when
-		final PageUtils<SearchResponse> response = naverApi.getSearchBlog(req);
+		final PageUtils<SearchBlogResource> response = naverApi.getSearchBlog(req);
 		
 		// then
 		this.assertThatOf(response);
@@ -54,6 +54,6 @@ public class RestApiTest {
 	private <T> void assertThatOf(PageUtils<T> response) {
 		assertThat(response.getList()).isNotEmpty();
 		assertThat(response.getSize()).isGreaterThan(0);
-		assertThat(response.getList().get(0)).isInstanceOf(SearchResponse.class);
+		assertThat(response.getList().get(0)).isInstanceOf(SearchBlogResource.class);
 	}
 }

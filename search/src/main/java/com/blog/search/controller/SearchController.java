@@ -17,7 +17,6 @@ import com.blog.search.exception.ApplicationException;
 import com.blog.search.request.SearchBlogReq;
 import com.blog.search.resources.SearchBlogResource;
 import com.blog.search.resources.SearchKeywordHistoryResource;
-import com.blog.search.rest.response.SearchResponse;
 import com.blog.search.service.SearchService;
 import com.blog.search.utils.PageUtils;
 
@@ -53,8 +52,8 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchBlogResource.class)
 	})
 	@GetMapping("/blogs")
-	public HttpEntity<PageUtils<SearchResponse>> getBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
-		final PageUtils<SearchResponse> result = searchService.getSearchBlog(req);
+	public HttpEntity<PageUtils<SearchBlogResource>> getBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
+		final PageUtils<SearchBlogResource> result = searchService.getSearchBlog(req);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -69,8 +68,8 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchBlogResource.class)
 	})
 	@GetMapping("/kakao/blogs")
-	public HttpEntity<PageUtils<SearchResponse>> getKakaoBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
-		final PageUtils<SearchResponse> result = searchService.getKakaoBlogs(req);
+	public HttpEntity<PageUtils<SearchBlogResource>> getKakaoBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
+		final PageUtils<SearchBlogResource> result = searchService.getKakaoBlogs(req);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -85,8 +84,8 @@ public class SearchController {
 		@ApiResponse(code = 200, message = "OK", response = SearchBlogResource.class)
 	})
 	@GetMapping("/naver/blogs")
-	public HttpEntity<PageUtils<SearchResponse>> getNaverBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
-		final PageUtils<SearchResponse> result = searchService.getNaverBlogs(req);
+	public HttpEntity<PageUtils<SearchBlogResource>> getNaverBlogs(@ApiIgnore @Valid SearchBlogReq req) throws ApplicationException {
+		final PageUtils<SearchBlogResource> result = searchService.getNaverBlogs(req);
 		return ResponseEntity.ok(result);
 	}
 	

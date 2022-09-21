@@ -14,10 +14,10 @@ import com.blog.core.jpa.entity.SearchHistory;
 import com.blog.core.jpa.repository.SearchHistoryRepository;
 import com.blog.search.exception.ApplicationException;
 import com.blog.search.request.SearchBlogReq;
+import com.blog.search.resources.SearchBlogResource;
 import com.blog.search.resources.SearchKeywordHistoryResource;
 import com.blog.search.rest.KakaoApi;
 import com.blog.search.rest.NaverApi;
-import com.blog.search.rest.response.SearchResponse;
 import com.blog.search.service.SearchService;
 import com.blog.search.utils.PageUtils;
 
@@ -35,7 +35,7 @@ public class SearchServiceImpl implements SearchService {
 	private ApplicationEventPublisher publisher;
 	
 	@Override
-	public PageUtils<SearchResponse> getSearchBlog(SearchBlogReq req) {
+	public PageUtils<SearchBlogResource> getSearchBlog(SearchBlogReq req) {
 		publisher.publishEvent(req);
 		
 		try {
@@ -47,13 +47,13 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
-	public PageUtils<SearchResponse> getKakaoBlogs(SearchBlogReq req) {
+	public PageUtils<SearchBlogResource> getKakaoBlogs(SearchBlogReq req) {
 		publisher.publishEvent(req);
 		return kakao.getSearchBlog(req);
 	}
 
 	@Override
-	public PageUtils<SearchResponse> getNaverBlogs(SearchBlogReq req) {
+	public PageUtils<SearchBlogResource> getNaverBlogs(SearchBlogReq req) {
 		publisher.publishEvent(req);
 		return naver.getSearchBlog(req);
 	}
