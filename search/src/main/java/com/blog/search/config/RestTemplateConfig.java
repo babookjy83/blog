@@ -9,9 +9,6 @@ import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 @Configuration
 public class RestTemplateConfig {
 	
@@ -39,10 +36,5 @@ public class RestTemplateConfig {
 				.setMaxConnTotal(100)
 				.setMaxConnPerRoute(100)
 				.build();
-	}
-	
-	@Bean
-	public Gson gson() {
-		return new GsonBuilder().serializeNulls().create();
 	}
 }
