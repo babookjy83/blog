@@ -32,6 +32,10 @@
 
 
 ```sh
+curl -X GET "http://localhost:8080/search/blogs?query=test&sort=accuracy&page=1&size=10" -H "accept: application/json"
+
+curl -X GET "http://localhost:8080/search/kakao/blogs?query=test&sort=accuracy&page=1&size=10" -H "accept: application/json"
+
 curl -X GET "http://localhost:8080/search/naver/blogs?query=fszf&sort=sim&page=1&size=10" -H "accept: application/json"
 ```
 	
