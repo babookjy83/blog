@@ -39,7 +39,7 @@ public class NaverApi extends RestApiAbstract {
 	private RestTemplate naverRestTemplate;
 	
 	private final static String SEARCH_LIST_URL = "/v1/search/blog.json";
-	private final static String SEARCH_ERROR_MESSAGE = "네이버 블로그 검색중에 에러가 발생하였습니다.";
+	private final static String SEARCH_ERROR_MESSAGE = "잘못된 API 요청입니다.";
 	
 	public PageUtils<SearchBlogResource> getSearchBlog(SearchBlogReq req) {
 		req.setSort(SearchBlogReq.NaverSort.getSort(req.getSort()));

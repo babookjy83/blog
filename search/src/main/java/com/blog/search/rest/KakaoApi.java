@@ -36,7 +36,7 @@ public class KakaoApi extends RestApiAbstract {
 	private RestTemplate kakaoRestTemplate;
 	
 	private final static String SEARCH_LIST_URL = "/v2/search/blog";
-	private final static String SEARCH_ERROR_MESSAGE = "카카오 블로그 검색중에 에러가 발생하였습니다.";
+	private final static String SEARCH_ERROR_MESSAGE = "잘못된 API 요청입니다.";
 	
 	public PageUtils<SearchBlogResource> getSearchBlog(SearchBlogReq req) {
 		final HttpEntity<String> entity = new HttpEntity<String>(this.getHeader());
