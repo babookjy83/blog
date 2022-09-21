@@ -3,6 +3,7 @@
 * 구성
 	* 멀티모듈로 구성하였으며, JPA Entity 및 Repository를 core에 별도로 분리하였습니다.
 	* 분리 이유는 DB는 공통이므로 core에서 공통으로 Entity를 관리하기 위해서입니다.
+* jar 파일은 용량제한으로 업로드가 불하가여 recruit@kakaobank.com 으로 전달드렸습니다.
 * 실행
 	* java -jar search-1.0.0.jar
 
